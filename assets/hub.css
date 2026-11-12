@@ -89,7 +89,7 @@ h1 .dot{color:var(--mint)}
 /* 아카이브 */
 .archive{padding:96px 0 40px}
 .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
-.head h2{font-family:var(--display);font-weight:400;font-size:clamp(56px,8vw,120px);line-height:.9;letter-spacing:.005em}
+.head h2{font-family:var(--display);font-weight:700;font-size:clamp(56px,8vw,120px);line-height:.9;letter-spacing:.005em}
 .head h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--paper)}
 .tabs{display:flex;gap:8px;flex-wrap:wrap}
 .tabs button{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em;background:transparent;color:var(--paper-dim);border:1px solid var(--line);padding:10px 16px;border-radius:999px;cursor:pointer;transition:all .2s}
@@ -210,7 +210,7 @@ h1 .dot{color:var(--mint)}
 .smkband{display:block;padding:96px 0 72px;border-bottom:1px solid var(--line);overflow:hidden;transition:background .3s}
 .smkband:hover{background:var(--ink-2)}
 .sb-head{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:44px}
-.sb-head h2{font-family:var(--display);font-weight:400;font-size:clamp(56px,8vw,120px);line-height:.9;letter-spacing:.005em}
+.sb-head h2{font-family:var(--display);font-weight:700;font-size:clamp(56px,8vw,120px);line-height:.9;letter-spacing:.005em}
 .sb-head h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--paper)}
 .sb-side{max-width:440px}
 .sb-num{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}

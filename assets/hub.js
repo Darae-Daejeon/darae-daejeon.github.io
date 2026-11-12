@@ -81,7 +81,7 @@
   }
   function card(p, inSeries) {
     var top = inSeries ? (p.issue || '') : D.orgNames(p) + ' · ' + (p.dateLabel || D.fmt(p.date) || p.issue || p.year);
-    var title = inSeries || !p.series ? p.title : (D.series[p.series] ? D.series[p.series].name + ' — ' : '') + (p.issue ? p.issue + ' ' : '') + p.title;
+    var title = inSeries || !p.series ? p.title : (D.series[p.series] ? D.series[p.series].name + ' — ' : '') + p.title;
     var lv = live(p);
     var a = '<a class="card" href="' + D.href(p.url) + '" target="_blank" rel="noopener">' +
       '<div class="thumb">' + thumbHTML(p) + '<span class="badge">' + D.types[p.type] + '</span>' + (lv ? '<span class="live-tag"><i></i>' + lv + '</span>' : '') + '<span class="go">↗</span></div>' +
@@ -172,13 +172,14 @@
 
     var list = D.projects.filter(function (p) { return match(p, state); });
     var groups = {}, singles = [];
-    list.forEach(function (p) { if (p.series) (groups[p.series] = groups[p.series] || []).push(p); else singles.push(p); });
+    list.forEach(function (p) { if (p.series && window.HUB_GROUP_SERIES) (groups[p.series] = groups[p.series] || []).push(p); else singles.push(p); });   // 시리즈도 일반 카드로 (묶으려면 HUB_GROUP_SERIES=true)
     var blocks = [];
     Object.keys(groups).forEach(function (k) {
       var g = groups[k].sort(function (a, b) { return (b.order || 0) - (a.order || 0); });
       if (g.length > 1) blocks.push({ k: k, g: g, y: g[0].year }); else singles.push(g[0]);
     });
-    singles.sort(function (a, b) { return b.year - a.year || ((b.date || '') !== (a.date || '') ? ((b.date || '') > (a.date || '') ? 1 : -1) : ((b.order || 0) - (a.order || 0))); });
+    var RANK = { event: 0, survey: 1, news: 2, report: 3 };
+    singles.sort(function (a, b) { return b.year - a.year || ((b.date || '') !== (a.date || '') ? ((b.date || '') > (a.date || '') ? 1 : -1) : (RANK[a.type] - RANK[b.type]) || ((b.order || 0) - (a.order || 0))); });
     blocks.sort(function (a, b) { return b.y - a.y; });
     var html = singles.map(function (p) { return card(p, false); }).join('') +
       blocks.map(function (b) { return seriesBlock(b.k, b.g); }).join('');
