@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../assets/hub.css?v=20261112-22">
+<link rel="stylesheet" href="../assets/hub.css?v=20261112-23">
 <style>
 .page{padding:72px 0 40px}
 .page-head{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:36px}
@@ -85,8 +85,11 @@
   <div class="wrap">
     <a class="logo" href="../">DARAE<i>.</i><span>DAEJEON</span></a>
     <div class="navlinks">
-      <a class="mono" href="../#archive">Archive</a>
-      <a class="pill" href="../">HOME ↗</a>
+      <a class="mono" href="../?type=event#archive">Events</a>
+      <a class="mono" href="../?type=news#archive">Newsletter</a>
+      <a class="mono" href="../?type=survey#archive">Survey</a>
+      <a class="pill-o" href="./">SMK <b id="nav-smk"></b></a>
+      <a class="pill" id="pill" href="../" target="_blank" rel="noopener">NEXT EVENT ↗</a>
     </div>
   </div>
 </nav>
@@ -122,10 +125,12 @@
 <footer>
   <div class="bigmark" aria-label="DARAE.DAEJEON">DARAE<i>.</i><span>DAEJEON</span></div>
   <div class="wrap foot"><a class="addr" href="https://map.naver.com/p/search/%EB%8C%80%EB%8D%95%ED%85%8C%ED%81%AC%EB%B9%84%EC%A6%88%EC%84%BC%ED%84%B0" target="_blank" rel="noopener"><span class="mono">© 다래전략사업화센터 대전지사</span> 대전 유성구 대덕대로 593 (대덕TBC 908호) ↗</a>
-    <a class="addr mail" href="mailto:yhj@daraebiz.com"><span class="mono">Contact</span> yhj@daraebiz.com</a><a class="mono" href="../">Home ↑</a></div>
+    <a class="addr mail" href="mailto:yhj@daraebiz.com"><span class="mono">Contact</span> yhj@daraebiz.com</a>
+    <a class="mono" href="#">Back to top ↑</a>
+  </div>
 </footer>
 
-<script src="../data.js?v=20261112-22"></script>
+<script src="../data.js?v=20261112-23"></script>
 <script>
 (function(){
   var D=window.DARAE, ROOT='../';
@@ -186,6 +191,13 @@
   render();
 })();
 </script>
-<script src="../assets/fit.js?v=20261112-22"></script>
+<script>
+(function(){var D=window.DARAE;document.getElementById('nav-smk').textContent=D.smk.length;
+  function dt(p){return new Date(p.date+'T'+(p.time||'23:59')+':00+09:00')}
+  var ev=D.projects.filter(function(p){return p.type==='event'&&p.date}).sort(function(a,b){return dt(a)-dt(b)}),
+      now=new Date(),up=ev.filter(function(p){return dt(p)>=now}),p=up[0]||ev[ev.length-1],pill=document.getElementById('pill');
+  if(p){pill.href=D.href(p.url);pill.textContent=(up[0]?'NEXT EVENT':'LATEST EVENT')+' ↗'}})();
+</script>
+<script src="../assets/fit.js?v=20261112-23"></script>
 </body>
 </html>
