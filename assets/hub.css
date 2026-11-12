@@ -206,25 +206,28 @@ h1 .dot{color:var(--mint)}
 .pill-o:hover{border-color:var(--mint);color:var(--mint)}
 .pill-o b{font-family:var(--display);font-weight:400;font-size:15px;letter-spacing:0;color:var(--mint)}
 
-/* SMK 띠 */
-.smkband{display:block;border-bottom:1px solid var(--line);overflow:hidden;transition:background .3s}
+/* SMK 섹션 */
+.smkband{display:block;padding:96px 0 72px;border-bottom:1px solid var(--line);overflow:hidden;transition:background .3s}
 .smkband:hover{background:var(--ink-2)}
-.sb-in{display:grid;grid-template-columns:360px minmax(0,1fr);gap:40px;align-items:center}
-.sb-info{padding:48px 0}
-.sb-info .mono{color:var(--mint);font-size:11px}
-.sb-info h2{font-family:var(--display);font-weight:400;font-size:clamp(52px,6vw,84px);line-height:.9;margin:14px 0 12px}
-.sb-info h2 span{color:var(--mint)}
-.sb-info p{color:var(--paper-dim);font-size:14px;line-height:1.6;margin-bottom:22px}
+.sb-head{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:44px}
+.sb-head h2{font-family:var(--display);font-weight:400;font-size:clamp(56px,8vw,120px);line-height:.9;letter-spacing:.005em}
+.sb-head h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--paper)}
+.sb-side{max-width:440px}
+.sb-num{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}
+.sb-num b{font-family:var(--display);font-weight:400;font-size:clamp(64px,7vw,104px);line-height:.9;color:var(--mint)}
+.sb-num .mono{color:var(--paper-dim);font-size:12px}
+.sb-side p{color:var(--paper-dim);font-size:14px;line-height:1.65;margin-bottom:22px}
 .sb-go{display:inline-flex;align-items:center;gap:10px;background:var(--paper);color:var(--ink);font-weight:800;font-size:15px;padding:14px 22px;border-radius:999px;transition:all .25s}
 .smkband:hover .sb-go{background:var(--mint)}
 .sb-go i{font-style:normal;transition:transform .25s}
 .smkband:hover .sb-go i{transform:translateX(4px)}
-.sb-view{min-width:0;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.sb-track{padding:28px 0}
-.sb-track .sb-card{margin-right:14px}
-.sb-card{width:200px;flex-shrink:0;display:block}
-.sb-card img{width:200px;height:150px;object-fit:cover;border-radius:12px;background:#fff;border:1px solid var(--line);display:block}
-.sb-card b{display:block;font-size:13px;font-weight:600;line-height:1.4;margin-top:9px;color:var(--paper-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-view{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.sb-view+.sb-view{margin-top:18px}
+.mq.rev.run{animation-direction:reverse}
+.sb-track .sb-card{margin-right:18px}
+.sb-card{width:280px;flex-shrink:0;display:block}
+.sb-card img{width:280px;height:210px;object-fit:cover;border-radius:16px;background:#fff;border:1px solid var(--line);display:block}
+.sb-card b{display:block;font-size:14px;font-weight:600;line-height:1.4;margin-top:10px;color:var(--paper-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .stat-sub{display:block;margin-top:8px;font-size:12px;color:var(--paper-dim)}
 .stat-sub b{color:var(--paper);font-weight:700}
 
@@ -288,10 +291,9 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding:40px 0 24px;over
   .navlinks a.mono{display:none}
   .navlinks{gap:8px}
   .pill-o{padding:9px 12px}
-  .sb-in{grid-template-columns:minmax(0,1fr);gap:0}
-  .sb-info{padding:40px 0 4px}
-  .sb-track{padding:20px 0 32px}
-  .sb-card{width:150px}.sb-card img{width:150px;height:112px}
+  .smkband{padding:64px 0 48px}
+  .sb-head{margin-bottom:28px}
+  .sb-card{width:190px}.sb-card img{width:190px;height:142px}
   .grid{grid-template-columns:repeat(2,1fr);gap:24px 14px}
 }
 @media (max-width:600px){

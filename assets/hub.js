@@ -215,16 +215,17 @@
   /* ---------- SMK 띠: 기술소개서 썸네일이 흐르는 바로가기 ---------- */
   function smkBand() {
     var el = $('smkband'); if (!el || !D.smk.length) return;
-    var pick = [], seen = {}, per = {};                     // 사업마다 골고루 최대 14장
-    D.smk.forEach(function (x) { per[x.p] = (per[x.p] || []).concat(x); });
-    var keys = Object.keys(per), i = 0;
-    while (pick.length < Math.min(14, D.smk.length)) { var k = keys[i % keys.length], l = per[k]; if (l.length) { var x = l.shift(); if (!seen[x.thumb]) { seen[x.thumb] = 1; pick.push(x); } } i++; if (i > 200) break; }
+    var per = {}, order = [];                                  // 사업마다 번갈아 섞어서 두 줄로 나눔
+    D.smk.forEach(function (x) { if (!per[x.p]) { per[x.p] = []; order.push(x.p); } per[x.p].push(x); });
+    var mix = [], seen = {}, left = D.smk.length, i = 0;
+    while (left > 0 && i < 2000) { var l = per[order[i % order.length]]; if (l.length) { var x = l.shift(); left--; if (!seen[x.thumb]) { seen[x.thumb] = 1; mix.push(x); } } i++; }
+    var half = Math.ceil(mix.length / 2);
     var tile = function (x) { return '<span class="sb-card"><img src="' + ROOT + 'assets/smk/' + x.thumb + '.jpg" alt="" loading="lazy"><b>' + x.title + '</b></span>'; };
-    var projs = keys.length;
     $('sb-count').textContent = D.smk.length;
     if ($('nav-smk')) $('nav-smk').textContent = D.smk.length;
-    $('sb-sub').textContent = projs + '개 사업 · ' + D.orgs.filter(function (o) { return D.smk.some(function (x) { return D.byId[x.p].org.indexOf(o.id) > -1; }); }).length + '개 기관';
-    $('sb-track').innerHTML = '<div class="grp">' + pick.map(tile).join('') + '</div>';
+    $('sb-sub').textContent = order.length + '개 사업 · ' + D.orgs.filter(function (o) { return D.smk.some(function (x) { return D.byId[x.p].org.indexOf(o.id) > -1; }); }).length + '개 기관';
+    $('sb-track').innerHTML = '<div class="grp">' + mix.slice(0, half).map(tile).join('') + '</div>';
+    if ($('sb-track2')) $('sb-track2').innerHTML = '<div class="grp">' + mix.slice(half).map(tile).join('') + '</div>';
   }
 
   /* ---------- 끊김 없는 흐르는 띠: 한 묶음을 화면보다 길게 이어 붙이고, 정확히 한 묶음 폭만큼 이동 ---------- */
