@@ -67,7 +67,7 @@
   function thumbHTML(p) {
     if (p.mosaic) return '<div class="mini">' + p.mosaic.map(function (n) { return '<img src="' + thumbSrc(n) + '" alt="" loading="lazy">'; }).join('') + '</div>';
     if (p.thumb) return '<img src="' + thumbSrc(p.thumb) + '" alt="' + p.title + '" loading="lazy">';
-    if (p.drive) return '<img src="https://drive.google.com/thumbnail?id=' + p.drive + '&sz=w800" alt="' + p.title + '" loading="lazy" referrerpolicy="no-referrer">';
+    if (p.drive) return '<img src="https://drive.google.com/thumbnail?id=' + p.drive + '&sz=w800" alt="' + p.title + '" loading="eager" referrerpolicy="no-referrer">';
     return '<div class="tile-fill"><b>' + (p.issue || D.orgNames(p)) + '</b><small>' + D.types[p.type] + '</small></div>';
   }
   /* 진행 중: 날짜가 오늘 이후인 행사(행사일)·수요조사(마감일) */
