@@ -39,6 +39,7 @@
     var ev = D.projects.filter(function (p) { return p.type === 'event'; }).length;
     var nw = D.projects.filter(function (p) { return p.type === 'news'; }).length;
     $('n-event').dataset.n = ev; $('n-tech').dataset.n = D.smk.length; $('n-news').dataset.n = nw;
+    $('n-report').dataset.n = D.projects.filter(function (p) { return p.type === 'report'; }).length;
     document.querySelectorAll('.num[data-n]').forEach(function (el) {
       var end = +el.dataset.n, sup = el.querySelector('sup').outerHTML, s = null;
       function step(t) { if (!s) s = t; var k = Math.min((t - s) / 1200, 1); el.innerHTML = Math.round(end * (1 - Math.pow(1 - k, 3))) + sup; if (k < 1) requestAnimationFrame(step); }
@@ -208,6 +209,7 @@
     });
   }
   on('tabs', 'f', 'type'); on('orgs', 'o', 'org'); on('years', 'y', 'year'); on('older', 'y', 'year');
+  var sr = $('stat-report'); if (sr) sr.addEventListener('click', function (e) { e.preventDefault(); state.type = 'report'; state.org = 'all'; render(); $('archive').scrollIntoView({ behavior: 'smooth' }); });
   document.querySelectorAll('[data-jump]').forEach(function (a) { a.addEventListener('click', function () { state.type = a.dataset.jump; render(); }); });
 
   /* ---------- SMK 띠: 기술소개서 썸네일이 흐르는 바로가기 ---------- */

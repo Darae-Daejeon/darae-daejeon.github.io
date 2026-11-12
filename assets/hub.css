@@ -61,7 +61,7 @@ h1 .dot{color:var(--mint)}
 .next:hover .next-cta span:last-child{transform:translate(4px,-4px)}
 
 /* 숫자 띠 */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
 .stat{padding:36px 32px;border-right:1px solid var(--line)}
 .stat:last-child{border-right:0}
 .stat .num{font-family:var(--display);font-size:clamp(56px,6vw,88px);line-height:1;color:var(--paper)}
@@ -300,9 +300,10 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding:40px 0 24px;over
   .pill-o{font-size:11px}
   .wrap{padding:0 16px}
   .hero{padding:56px 0 48px}
-  .stats{grid-template-columns:1fr}
-  .stat{border-right:0;border-bottom:1px solid var(--line);padding:24px 16px}
-  .stat:last-child{border-bottom:0}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 16px}
+  .stat:nth-child(2n){border-right:0}
+  .stat:nth-last-child(-n+2){border-bottom:0}
   .track .ci{height:44px;padding:0 28px}.track .ci img{height:30px}.track .ci img.h-etri{height:21px}.track .ci img.h-kribb{height:26px}.track .ci img.h-inno{height:34px}.track .ci img.h-dicia{height:24px}.track .ci img.h-jbnu{height:33px}.track .ci.txt{font-size:17px}
   .archive{padding:64px 0 24px}
   .s-info h3{font-size:46px}
