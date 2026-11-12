@@ -20,13 +20,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../assets/hub.css?v=20261112-24">
+<link rel="stylesheet" href="../assets/hub.css?v=20261112-25">
 <style>
 .page{padding:72px 0 40px}
 .page-head{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:36px}
 .page-head h1{font-family:var(--display);font-weight:700;font-size:clamp(64px,10vw,150px);line-height:.88;letter-spacing:.005em}
 .page-head h1 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--paper)}
-.page-head p{color:var(--paper-dim);font-size:15px;line-height:1.7;max-width:420px;margin-top:20px}
+.page-head p{color:var(--paper-dim);font-size:15px;line-height:1.7;max-width:560px;margin-top:20px}
 .big{text-align:right}
 .big b{font-family:var(--display);font-weight:400;font-size:clamp(72px,9vw,128px);line-height:.9;display:block}
 .big b sup{font-size:.35em;color:var(--mint);vertical-align:top}
@@ -56,7 +56,6 @@
 .sc .im img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .sc:hover .im{border-color:var(--mint)}
 .sc:hover .im img{transform:scale(1.05)}
-.sc .no{position:absolute;left:10px;top:10px;background:rgba(18,18,18,.85);color:var(--paper);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;padding:6px 10px;border-radius:999px}
 .sc .fd{position:absolute;right:10px;top:10px;background:var(--mint);color:var(--ink);font-size:11px;font-weight:700;padding:5px 9px;border-radius:999px}
 .sc .t{padding:14px 2px 0}
 .sc .t .mono{color:var(--paper-dim);font-size:10.5px}
@@ -100,7 +99,7 @@
       <div>
         <div class="kicker mono">Online Sales Material Kit · 온라인 기술소개자료</div>
         <h1>SMK<br><em>ARCHIVE</em></h1>
-        <p>다래가 행사·뉴스레터를 위해 만든 온라인 기술소개자료를 한곳에 모았습니다. 카드를 누르면 기술소개서가 새 탭으로 열립니다.</p>
+        <p>다래가 행사·뉴스레터를 위해 만든 온라인 기술소개자료를 한곳에 모았습니다.<br>카드를 누르면 기술소개서가 새 탭으로 열립니다.</p>
       </div>
       <div class="big"><b id="total">0<sup>+</sup></b><span class="mono">Tech Sheets</span></div>
     </div>
@@ -130,7 +129,7 @@
   </div>
 </footer>
 
-<script src="../data.js?v=20261112-24"></script>
+<script src="../data.js?v=20261112-25"></script>
 <script>
 (function(){
   var D=window.DARAE, ROOT='../';
@@ -179,7 +178,7 @@
         setTimeout(function(){cb.textContent='표 복사'},2500)};
     }else{
       $('out').innerHTML='<div class="sgrid">'+L.map(function(s){
-        return '<a class="sc" href="'+D.href(s.url)+'" target="_blank" rel="noopener"><div class="im"><img src="'+ROOT+'assets/smk/'+s.thumb+'.jpg" alt="" loading="lazy"><span class="no">'+esc(s.no)+'</span>'+(s.field?'<span class="fd">'+esc(s.field)+'</span>':'')+'</div>'+
+        return '<a class="sc" href="'+D.href(s.url)+'" target="_blank" rel="noopener"><div class="im"><img src="'+ROOT+'assets/smk/'+s.thumb+'.jpg" alt="" loading="lazy">'+(s.field?'<span class="fd">'+esc(s.field)+'</span>':'')+'</div>'+
           '<div class="t"><div class="mono">'+esc(s.pname)+' · '+s.year+'</div><h3>'+hl(s.title)+'</h3><p>'+hl(s.inst)+(s.who?' · '+hl(s.who):'')+(s.sub?'<br>'+hl(s.sub):'')+(s.note?' <span style="color:var(--mint)">'+esc(s.note)+'</span>':'')+'</p></div></a>'}).join('')+'</div>';
     }
     var u=new URL(location.href);['year','p','field','q','view'].forEach(function(k){var d=k==='view'?'card':k==='q'?'':'all';st[k]===d?u.searchParams.delete(k):u.searchParams.set(k,st[k])});
@@ -198,6 +197,6 @@
       now=new Date(),up=ev.filter(function(p){return dt(p)>=now}),p=up[0]||ev[ev.length-1],pill=document.getElementById('pill');
   if(p){pill.href=D.href(p.url);pill.textContent=(up[0]?'NEXT EVENT':'LATEST EVENT')+' ↗'}})();
 </script>
-<script src="../assets/fit.js?v=20261112-24"></script>
+<script src="../assets/fit.js?v=20261112-25"></script>
 </body>
 </html>

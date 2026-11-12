@@ -224,7 +224,7 @@
     var tile = function (x) { return '<button type="button" class="sb-card" data-smk="' + D.smk.indexOf(x) + '" aria-label="' + x.title + ' 기술소개서 보기"><img src="' + ROOT + 'assets/smk/' + x.thumb + '.jpg" alt="" loading="lazy"><b>' + x.title + '</b></button>'; };
     $('sb-count').textContent = D.smk.length;
     if ($('nav-smk')) $('nav-smk').textContent = D.smk.length;
-    $('sb-sub').textContent = order.length + '개 사업 · ' + D.orgs.filter(function (o) { return D.smk.some(function (x) { return D.byId[x.p].org.indexOf(o.id) > -1; }); }).length + '개 기관';
+    if ($('sb-sub')) $('sb-sub').textContent = order.length + '개 사업 · ' + D.orgs.filter(function (o) { return D.smk.some(function (x) { return D.byId[x.p].org.indexOf(o.id) > -1; }); }).length + '개 기관';
     $('sb-track').innerHTML = '<div class="grp">' + mix.slice(0, half).map(tile).join('') + '</div>';
     if ($('sb-track2')) $('sb-track2').innerHTML = '<div class="grp">' + mix.slice(half).map(tile).join('') + '</div>';
   }
