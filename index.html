@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DARAE — 행사·뉴스레터 아카이브</title>
+<meta name="description" content="다래가 기획·운영한 기술설명회, 파트너링 행사, 기술이전 뉴스레터, 수요조사 모음">
+<meta property="og:title" content="DARAE — 행사·뉴스레터 아카이브">
+<meta property="og:description" content="기술이 사업이 되는 자리. 다래가 만든 행사 페이지를 한곳에 모았습니다.">
+<meta property="og:image" content="https://darae-daejeon.github.io/assets/thumbs/kist-connect.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
+<link rel="stylesheet" href="assets/hub.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="./">DARAE<i>.</i></a>
+    <div class="navlinks">
+      <a class="mono" href="#archive" data-jump="event">Events</a>
+      <a class="mono" href="#archive" data-jump="news">Newsletter</a>
+      <a class="mono" href="#archive" data-jump="survey">Survey</a>
+      <a class="mono" href="smk/">SMK</a>
+      <a class="pill" id="pill" href="#" target="_blank" rel="noopener">NEXT EVENT ↗</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="kicker mono">Tech Transfer · Partnering · Daejeon</div>
+      <h1>기술이<br><span class="out">사업이 되는</span><br>자리를 만듭니다<span class="dot">.</span></h1>
+      <p class="sub">연구소의 기술과 기업을 잇는 <b>기술설명회·파트너링 행사</b>부터 <b>기술소개자료(SMK)</b>, <b>기술이전 뉴스레터</b>, <b>수요조사</b>까지. 다래가 기획하고 만든 페이지를 한곳에 모았습니다.</p>
+    </div>
+
+    <a class="next" id="next" href="#" target="_blank" rel="noopener">
+      <div class="mosaic" id="mosaic"></div>
+      <div class="next-body">
+        <div class="mono" id="next-kind"></div>
+        <h3 id="next-title"></h3>
+        <dl class="next-meta" id="next-meta"></dl>
+        <div class="next-cta"><span>행사 페이지 보기</span><span>↗</span></div>
+      </div>
+    </a>
+  </div>
+</header>
+
+<section class="stats">
+  <div class="stat"><div class="num" id="n-event" data-n="0">0<sup>+</sup></div><span class="mono">Events · 행사·설명회</span></div>
+  <a class="stat" href="smk/" style="display:block"><div class="num" id="n-tech" data-n="0">0<sup>+</sup></div><span class="mono">Technologies · 소개 기술 ↗</span></a>
+  <div class="stat"><div class="num" id="n-news" data-n="0">0<sup>+</sup></div><span class="mono">Newsletters · 뉴스레터</span></div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>KIST</span><span>ETRI</span><span>KRIBB</span><span>DICIA</span><span>전북대학교</span><span>기술보증기금</span><span>INNOPOLIS</span>
+    <span>KIST</span><span>ETRI</span><span>KRIBB</span><span>DICIA</span><span>전북대학교</span><span>기술보증기금</span><span>INNOPOLIS</span>
+  </div>
+</div>
+
+<main class="archive" id="archive">
+  <div class="wrap">
+    <div class="head">
+      <h2>ARCHIVE<br><em id="arch-year">2026</em></h2>
+      <div class="filters">
+        <div class="years hide" id="years-row"><span class="mono lbl">연도</span><div id="years"></div></div>
+        <div class="tabs" id="tabs"></div>
+        <div class="orgs"><span class="mono lbl">기관</span><div id="orgs"></div></div>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="empty mono hide" id="empty">해당 조건의 자료가 없습니다</p>
+    <div class="older" id="older"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="bigmark">DARAE<i>.</i></div>
+  <div class="wrap foot">
+    <span class="mono">© DARAE · Daejeon, Korea</span>
+    <span><a class="mono" href="smk/">SMK 목록</a> &nbsp; <a class="mono" href="#">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
+<script src="data.js"></script>
+<script src="assets/hub.js"></script>
+</body>
+</html>
