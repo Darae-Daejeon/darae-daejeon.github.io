@@ -259,13 +259,13 @@
     modal.innerHTML = '<div class="sm-box"><div class="sm-head"><div><div class="mono">' + esc(x.no) + ' · ' + esc(p.short || p.title || '') + ' · ' + (p.year || '') + '</div>' +
       '<h3>' + esc(x.title) + '</h3><p>' + esc(x.inst) + (x.who ? ' · ' + esc(x.who) : '') + (x.sub ? ' · ' + esc(x.sub) : '') + (x.note ? ' · ' + esc(x.note) : '') + '</p></div>' +
       '<button type="button" class="sm-x" aria-label="닫기">✕</button></div>' +
-      '<div class="sm-body">' + (isImg ? '<div class="img"><img src="' + url + '" alt="' + esc(x.title) + '"></div>' : '<iframe src="' + url + '" title="' + esc(x.title) + '" loading="lazy"></iframe>') + '</div>' +
+      '<div class="sm-body">' + (isImg ? '<div class="img"><img src="' + url + '" alt="' + esc(x.title) + '"></div>' : '<iframe src="' + url + '" title="' + esc(x.title) + '"></iframe>') + '</div>' +
       '<div class="sm-foot"><a href="' + url + '" target="_blank" rel="noopener">새 탭에서 크게 보기 ↗</a>' +
       '<a class="main" href="' + ROOT + 'smk/">온라인 기술소개서 전체 보기 <i>→</i></a></div></div>';
     modal.setAttribute('aria-label', x.title);
     lastFocus = document.activeElement;
     document.body.classList.add('sm-lock');
-    requestAnimationFrame(function () { modal.classList.add('open'); modal.querySelector('.sm-x').focus(); });
+    void modal.offsetWidth; modal.classList.add('open'); modal.querySelector('.sm-x').focus();
   }
   function closeSmk() {
     modal.classList.remove('open'); document.body.classList.remove('sm-lock');
