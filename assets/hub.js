@@ -20,6 +20,7 @@
     var a = $('next'), pill = $('pill');
     a.href = pill.href = D.href(p.url);
     pill.textContent = (isNext ? 'NEXT EVENT' : 'LATEST EVENT') + ' ↗';
+    if ($('st-bar')) $('st-bar').hidden = !isNext;
     $('mosaic').innerHTML = (p.mosaic || [p.thumb]).map(function (n) { return '<img src="' + thumbSrc(n) + '" alt="">'; }).join('') +
       '<div class="dday" id="dday"></div>';
     $('mosaic').style.gridTemplateColumns = 'repeat(' + (p.mosaic ? p.mosaic.length : 1) + ',1fr)';
