@@ -84,7 +84,7 @@
     var title = inSeries || !p.series ? p.title : (D.series[p.series] ? D.series[p.series].name + ' — ' : '') + p.title;
     var lv = live(p);
     var a = '<a class="card" href="' + D.href(p.url) + '" target="_blank" rel="noopener">' +
-      '<div class="thumb">' + thumbHTML(p) + '<span class="badge">' + D.types[p.type] + '</span>' + (lv ? '<span class="live-tag"><i></i>' + lv + '</span>' : '') + '<span class="go">↗</span></div>' +
+      '<div class="thumb">' + thumbHTML(p) + '<div class="tags"><span class="badge">' + D.types[p.type] + '</span>' + (lv ? '<span class="live-tag"><i></i>' + lv + '</span>' : '') + '</div><span class="go">↗</span></div>' +
       '<div class="cap"><div class="mono">' + top + '</div><h3>' + title + '</h3></div></a>';
     var n = D.smkOf(p.id).length;
     var link = n ? '<a class="smk-link" href="' + ROOT + 'smk/?p=' + p.id + '">기술소개서 ' + n + '건 보기 →</a>' : '';

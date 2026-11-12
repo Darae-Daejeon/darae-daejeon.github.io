@@ -269,6 +269,23 @@ body[data-live^="comet"] .item.live::after{z-index:-1;transform:scale(1.04);filt
 @keyframes dotBreath{0%,100%{filter:drop-shadow(0 0 0 rgba(60,255,208,0))}50%{filter:drop-shadow(0 0 7px rgba(60,255,208,.8))}}
 @keyframes dotGloss{0%,70%{background-position:100% 0}88%,100%{background-position:0% 0}}
 
+
+/* ---------- 한글 줄바꿈 (hangul-wrap 처방: 자리별) ---------- */
+/* 기본값: :where() 라 명시도 0 — 컴포넌트 규칙이 언제나 이긴다 */
+:where(h1,h2,h3,h4,h5,h6,p,li,dd,dt,blockquote,figcaption){word-break:keep-all;overflow-wrap:break-word}
+:where(h1,h2,h3,h4,h5,h6){text-wrap:balance}
+:where(p,li,dd,blockquote,figcaption){text-wrap:pretty}
+:where(pre,code,kbd,samp){overflow-wrap:anywhere}
+/* 제목·본문 역할을 하는 span·a·td */
+.stat .mono,.addr,.sb-side p,td.l,.next-meta dd,.cap .mono,.kicker{word-break:keep-all;overflow-wrap:break-word}
+td.l,.sb-side p{text-wrap:pretty}
+/* 좁은 칸(배지·태그·버튼)은 keep-all 대신 한 줄 고정 */
+.badge,.live-tag,.pill,.pill-o,.sb-go,.smk-link,.tabs button,#orgs button{white-space:nowrap}
+
+/* ---------- 카드 위 태그: 좁은 카드에서 겹치지 않게 ---------- */
+.tags{position:absolute;left:12px;right:12px;top:12px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:6px;z-index:2;pointer-events:none}
+.tags .badge,.tags .live-tag{position:static}
+
 /* 주소 */
 .addr{display:inline-flex;align-items:center;gap:10px;color:var(--paper-dim);font-size:13px;transition:color .2s}
 .addr:hover{color:var(--mint)}
@@ -317,6 +334,9 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding:40px 0 24px;over
   .years,.filters,.orgs{align-items:flex-start;justify-content:flex-start}
   .filters,.orgs{align-items:flex-start;justify-content:flex-start}
   .cap h3{font-size:15px}
+  .tags{left:8px;right:8px;top:8px;gap:5px}
+  .live-tag{font-size:11px;padding:5px 9px 5px 8px}
+  .badge{font-size:9.5px;padding:6px 9px}
   .mosaic{height:150px}
 }
 @media (prefers-reduced-motion:reduce){*:not(.mq){animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
