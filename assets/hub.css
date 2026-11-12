@@ -235,7 +235,11 @@ h1 .dot{color:var(--mint)}
 
 
 /* 진행중 표시 방식: <body data-live="gold|comet|comet-mint">, 없으면 민트 숨쉬기 */
-body[data-live="comet-mint"]{--gold-rgb:60,255,208;--head:#dcfff5}
+/* comet-mint: 민트 테두리는 그대로, 흰 빛만 테두리를 따라 돎 */
+body[data-live="comet-mint"] .item.live .thumb{border:2px solid var(--mint)!important;box-shadow:0 0 18px rgba(60,255,208,.18)!important}
+body[data-live="comet-mint"] .item.live::before,body[data-live="comet-mint"] .item.live::after{
+  background:conic-gradient(from var(--a),rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 220deg,rgba(255,255,255,.15) 265deg,rgba(255,255,255,.45) 310deg,rgba(255,255,255,.85) 340deg,#fff 355deg,rgba(255,255,255,0) 360deg)!important}
+body[data-live="comet-mint"] .item.live::after{opacity:.85}
 :root{--gold-rgb:255,209,102}
 .item{position:relative}
 body[data-live="gold"] .live-tag,body[data-live="comet"] .live-tag{background:#FFD166}
