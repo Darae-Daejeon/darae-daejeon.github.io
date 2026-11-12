@@ -183,6 +183,36 @@ h1 .dot{color:var(--mint)}
 .tile-fill{position:absolute;inset:0;background:var(--paper);color:var(--ink);padding:18px;display:flex;flex-direction:column;justify-content:flex-end}
 .tile-fill b{font-family:var(--display);font-weight:400;font-size:44px;line-height:.92}
 .tile-fill small{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;margin-top:10px;color:rgba(18,18,18,.55)}
+/* 카드 아래 SMK 바로가기 */
+.item{display:block}
+.smk-link{display:inline-flex;margin:12px 4px 0;font-size:13px;font-weight:700;color:var(--mint);border-bottom:1px solid transparent;transition:border-color .2s}
+.smk-link:hover{border-bottom-color:var(--mint)}
+.s-track .smk-link{margin-top:8px;font-size:12px}
+
+/* 상단 SMK 버튼 */
+.pill-o{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--paper-dim);color:var(--paper);font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.12em;padding:9px 16px;border-radius:999px;transition:all .2s}
+.pill-o:hover{border-color:var(--mint);color:var(--mint)}
+.pill-o b{font-family:var(--display);font-weight:400;font-size:15px;letter-spacing:0;color:var(--mint)}
+
+/* SMK 띠 */
+.smkband{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);align-items:center;border-bottom:1px solid var(--line);overflow:hidden;transition:background .3s}
+.smkband:hover{background:var(--ink-2)}
+.sb-info{padding:44px 32px 44px max(32px,calc((100vw - 1280px)/2 + 32px))}
+.sb-info .mono{color:var(--mint);font-size:11px}
+.sb-info h2{font-family:var(--display);font-weight:400;font-size:clamp(52px,6vw,84px);line-height:.9;margin:14px 0 10px}
+.sb-info h2 span{color:var(--mint)}
+.sb-info p{color:var(--paper-dim);font-size:14px;line-height:1.6;margin-bottom:22px}
+.sb-go{display:inline-flex;align-items:center;gap:10px;background:var(--paper);color:var(--ink);font-weight:800;font-size:15px;padding:14px 22px;border-radius:999px;transition:all .25s}
+.smkband:hover .sb-go{background:var(--mint)}
+.sb-go i{font-style:normal;transition:transform .25s}
+.smkband:hover .sb-go i{transform:translateX(4px)}
+.sb-view{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.sb-track{display:flex;gap:14px;width:max-content;animation:roll 60s linear infinite;padding:28px 0}
+.smkband:hover .sb-track{animation-play-state:paused}
+.sb-card{width:200px;flex-shrink:0;display:block}
+.sb-card img{width:200px;height:150px;object-fit:cover;border-radius:12px;background:#fff;border:1px solid var(--line);display:block}
+.sb-card b{display:block;font-size:13px;font-weight:600;line-height:1.4;margin-top:9px;color:var(--paper-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
 /* FOOTER */
 footer{border-top:1px solid var(--line);margin-top:80px;padding:40px 0 24px;overflow:hidden}
 .bigmark{font-family:var(--display);font-size:29.5vw;line-height:.8;letter-spacing:-.01em;color:var(--paper);white-space:nowrap;margin:0 -1vw;user-select:none}
@@ -198,6 +228,12 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding:40px 0 24px;over
   .s-feature h4{font-size:19px}
   .hero .wrap{grid-template-columns:1fr;gap:48px}
   .navlinks a.mono{display:none}
+  .navlinks{gap:8px}
+  .pill-o{padding:9px 12px}
+  .smkband{grid-template-columns:minmax(0,1fr)}
+  .sb-info{padding:36px 22px 4px}
+  .sb-track{padding:20px 0 32px}
+  .sb-card{width:150px}.sb-card img{width:150px;height:112px}
   .grid{grid-template-columns:repeat(2,1fr);gap:24px 14px}
 }
 @media (max-width:600px){

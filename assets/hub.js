@@ -73,9 +73,12 @@
   function card(p, inSeries) {
     var top = inSeries ? (p.issue || '') : D.orgNames(p) + ' · ' + (p.dateLabel || D.fmt(p.date) || p.issue || p.year);
     var title = inSeries || !p.series ? p.title : (D.series[p.series] ? D.series[p.series].name + ' — ' : '') + (p.issue ? p.issue + ' ' : '') + p.title;
-    return '<a class="card' + (inSeries ? '' : ' rv') + '" href="' + D.href(p.url) + '" target="_blank" rel="noopener">' +
+    var a = '<a class="card" href="' + D.href(p.url) + '" target="_blank" rel="noopener">' +
       '<div class="thumb">' + thumbHTML(p) + '<span class="badge">' + D.types[p.type] + '</span><span class="go">↗</span></div>' +
       '<div class="cap"><div class="mono">' + top + '</div><h3>' + title + '</h3></div></a>';
+    var n = D.smkOf(p.id).length;
+    var link = n ? '<a class="smk-link" href="' + ROOT + 'smk/?p=' + p.id + '">기술소개서 ' + n + '건 보기 →</a>' : '';
+    return inSeries ? a + link : '<div class="item rv">' + a + link + '</div>';
   }
   function seriesBlock(key, list) {
     var S = D.series[key] || { name: key, desc: '' };
@@ -198,7 +201,22 @@
   on('tabs', 'f', 'type'); on('orgs', 'o', 'org'); on('years', 'y', 'year'); on('older', 'y', 'year');
   document.querySelectorAll('[data-jump]').forEach(function (a) { a.addEventListener('click', function () { state.type = a.dataset.jump; render(); }); });
 
-  hero(); stats(); render();
+  /* ---------- SMK 띠: 기술소개서 썸네일이 흐르는 바로가기 ---------- */
+  function smkBand() {
+    var el = $('smkband'); if (!el || !D.smk.length) return;
+    var pick = [], seen = {}, per = {};                     // 사업마다 골고루 최대 14장
+    D.smk.forEach(function (x) { per[x.p] = (per[x.p] || []).concat(x); });
+    var keys = Object.keys(per), i = 0;
+    while (pick.length < Math.min(14, D.smk.length)) { var k = keys[i % keys.length], l = per[k]; if (l.length) { var x = l.shift(); if (!seen[x.thumb]) { seen[x.thumb] = 1; pick.push(x); } } i++; if (i > 200) break; }
+    var tile = function (x) { return '<span class="sb-card"><img src="' + ROOT + 'assets/smk/' + x.thumb + '.jpg" alt="" loading="lazy"><b>' + x.title + '</b></span>'; };
+    var projs = keys.length;
+    $('sb-count').textContent = D.smk.length;
+    if ($('nav-smk')) $('nav-smk').textContent = D.smk.length;
+    $('sb-sub').textContent = projs + '개 사업 · ' + D.orgs.filter(function (o) { return D.smk.some(function (x) { return D.byId[x.p].org.indexOf(o.id) > -1; }); }).length + '개 기관';
+    $('sb-track').innerHTML = pick.map(tile).join('') + pick.map(tile).join('');
+  }
+
+  hero(); stats(); smkBand(); render();
   if (q.get('type') || q.get('org') || q.get('year')) $('archive').scrollIntoView();
   window.HUB_RERENDER = render;
 })();
