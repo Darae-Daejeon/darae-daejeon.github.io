@@ -32,8 +32,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 /* HERO */
 .hero{position:relative;padding:88px 0 72px;border-bottom:1px solid var(--line);overflow:hidden}
 .hero::before{content:"";position:absolute;inset:0;background:
-  radial-gradient(600px 400px at 85% 10%,rgba(60,255,208,.10),transparent 70%),
-  linear-gradient(var(--line) 1px,transparent 1px) 0 0/100% 96px;
+  radial-gradient(600px 400px at 85% 10%,rgba(60,255,208,.10),transparent 70%);
   -webkit-mask:linear-gradient(#000,transparent 85%);mask:linear-gradient(#000,transparent 85%);pointer-events:none}
 .hero .wrap{position:relative;display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:end}
 .kicker{color:var(--mint);display:flex;align-items:center;gap:10px;margin-bottom:28px}
