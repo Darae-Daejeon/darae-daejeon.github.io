@@ -40,6 +40,8 @@
     var nw = D.projects.filter(function (p) { return p.type === 'news'; }).length;
     var tc = D.projects.reduce(function (n, p) { return n + D.techsOf(p); }, 0);
     $('n-event').dataset.n = ev; $('n-tech').dataset.n = tc; $('n-news').dataset.n = nw;
+    var sm = D.smk.length;
+    if ($('n-tech-sub')) $('n-tech-sub').innerHTML = '기술소개서(SMK) <b>' + sm + '</b> + 뉴스레터 소개 기술 <b>' + (tc - sm) + '</b>';
     document.querySelectorAll('.num[data-n]').forEach(function (el) {
       var end = +el.dataset.n, sup = el.querySelector('sup').outerHTML, s = null;
       function step(t) { if (!s) s = t; var k = Math.min((t - s) / 1200, 1); el.innerHTML = Math.round(end * (1 - Math.pow(1 - k, 3))) + sup; if (k < 1) requestAnimationFrame(step); }
@@ -70,15 +72,24 @@
     if (p.thumb) return '<img src="' + thumbSrc(p.thumb) + '" alt="' + p.title + '" loading="lazy">';
     return '<div class="tile-fill"><b>' + (p.issue || D.orgNames(p)) + '</b><small>' + D.types[p.type] + '</small></div>';
   }
+  /* 진행 중: 날짜가 오늘 이후인 행사(행사일)·수요조사(마감일) */
+  function live(p) {
+    if (!p.date || (p.type !== 'event' && p.type !== 'survey')) return '';
+    var d = Math.ceil((new Date(p.date + 'T00:00:00+09:00') - new Date(TODAY.toDateString())) / 864e5);
+    if (d < 0) return '';
+    var dd = d === 0 ? 'D-DAY' : 'D-' + d;
+    return p.type === 'survey' ? '진행중 · 마감 ' + dd : '진행중 · ' + dd;
+  }
   function card(p, inSeries) {
     var top = inSeries ? (p.issue || '') : D.orgNames(p) + ' · ' + (p.dateLabel || D.fmt(p.date) || p.issue || p.year);
     var title = inSeries || !p.series ? p.title : (D.series[p.series] ? D.series[p.series].name + ' — ' : '') + (p.issue ? p.issue + ' ' : '') + p.title;
+    var lv = live(p);
     var a = '<a class="card" href="' + D.href(p.url) + '" target="_blank" rel="noopener">' +
-      '<div class="thumb">' + thumbHTML(p) + '<span class="badge">' + D.types[p.type] + '</span><span class="go">↗</span></div>' +
+      '<div class="thumb">' + thumbHTML(p) + '<span class="badge">' + D.types[p.type] + '</span>' + (lv ? '<span class="live-tag"><i></i>' + lv + '</span>' : '') + '<span class="go">↗</span></div>' +
       '<div class="cap"><div class="mono">' + top + '</div><h3>' + title + '</h3></div></a>';
     var n = D.smkOf(p.id).length;
     var link = n ? '<a class="smk-link" href="' + ROOT + 'smk/?p=' + p.id + '">기술소개서 ' + n + '건 보기 →</a>' : '';
-    return inSeries ? a + link : '<div class="item rv">' + a + link + '</div>';
+    return inSeries ? a + link : '<div class="item rv' + (lv ? ' live' : '') + '">' + a + link + '</div>';
   }
   function seriesBlock(key, list) {
     var S = D.series[key] || { name: key, desc: '' };
