@@ -207,8 +207,7 @@ h1 .dot{color:var(--mint)}
 .pill-o b{font-family:var(--display);font-weight:400;font-size:15px;letter-spacing:0;color:var(--mint)}
 
 /* SMK 섹션 */
-.smkband{display:block;padding:96px 0 72px;border-bottom:1px solid var(--line);overflow:hidden;transition:background .3s}
-.smkband:hover{background:var(--ink-2)}
+.smkband{display:block;padding:96px 0 72px;border-bottom:1px solid var(--line);overflow:hidden}
 .sb-head{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:44px}
 .sb-head h2{font-family:var(--display);font-weight:700;font-size:clamp(56px,8vw,120px);line-height:.9;letter-spacing:.005em}
 .sb-head h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--paper)}
@@ -218,14 +217,17 @@ h1 .dot{color:var(--mint)}
 .sb-num .mono{color:var(--paper-dim);font-size:12px}
 .sb-side p{color:var(--paper-dim);font-size:14px;line-height:1.65;margin-bottom:22px}
 .sb-go{display:inline-flex;align-items:center;gap:10px;background:var(--paper);color:var(--ink);font-weight:800;font-size:15px;padding:14px 22px;border-radius:999px;transition:all .25s}
-.smkband:hover .sb-go{background:var(--mint)}
+.sb-go:hover,.sb-go:focus-visible{background:var(--mint)}
 .sb-go i{font-style:normal;transition:transform .25s}
-.smkband:hover .sb-go i{transform:translateX(4px)}
+.sb-go:hover i,.sb-go:focus-visible i{transform:translateX(4px)}
 .sb-view{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
 .sb-view+.sb-view{margin-top:18px}
 .mq.rev.run{animation-direction:reverse}
 .sb-track .sb-card{margin-right:18px}
-.sb-card{width:280px;flex-shrink:0;display:block}
+.sb-card{width:280px;flex-shrink:0;display:block;font:inherit;color:inherit;text-align:left;background:none;border:0;padding:0;cursor:pointer}
+.sb-card img{transition:border-color .2s,transform .3s}
+.sb-card:hover img,.sb-card:focus-visible img{border-color:var(--mint);transform:translateY(-3px)}
+.sb-card:hover b{color:var(--paper)}
 .sb-card img{width:280px;height:210px;object-fit:cover;border-radius:16px;background:#fff;border:1px solid var(--line);display:block}
 .sb-card b{display:block;font-size:14px;font-weight:600;line-height:1.4;margin-top:10px;color:var(--paper-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .stat-sub{display:block;margin-top:8px;font-size:12px;color:var(--paper-dim)}
@@ -263,11 +265,10 @@ body[data-live^="comet"] .item.live::after{z-index:-1;transform:scale(1.04);filt
 
 /* 브랜드 점: 숨쉬듯 빛나고, 가끔 안쪽에 반짝이는 광택이 지나감 */
 .logo i,.bigmark i{color:var(--mint);
-  background:linear-gradient(120deg,var(--mint) 0%,var(--mint) 42%,#f2fffb 49%,#ffffff 50%,#f2fffb 51%,var(--mint) 58%,var(--mint) 100%);
-  background-size:400% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  animation:dotBreath 3s ease-in-out infinite,dotGloss 5s ease-in-out infinite}
-@keyframes dotBreath{0%,100%{filter:drop-shadow(0 0 0 rgba(60,255,208,0))}50%{filter:drop-shadow(0 0 7px rgba(60,255,208,.8))}}
-@keyframes dotGloss{0%,70%{background-position:100% 0}88%,100%{background-position:0% 0}}
+  background:linear-gradient(110deg,var(--mint) 0%,var(--mint) 38%,rgba(214,255,244,1) 46%,#ffffff 50%,rgba(214,255,244,1) 54%,var(--mint) 62%,var(--mint) 100%);
+  background-size:300% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  will-change:background-position;animation:dotGloss 4.5s cubic-bezier(.45,.05,.25,1) infinite}
+@keyframes dotGloss{0%,55%{background-position:100% 0}85%,100%{background-position:0% 0}}
 
 
 /* ---------- 한글 줄바꿈 (hangul-wrap 처방: 자리별) ---------- */
@@ -285,6 +286,31 @@ td.l,.sb-side p{text-wrap:pretty}
 /* ---------- 카드 위 태그: 좁은 카드에서 겹치지 않게 ---------- */
 .tags{position:absolute;left:12px;right:12px;top:12px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:6px;z-index:2;pointer-events:none}
 .tags .badge,.tags .live-tag{position:static}
+
+/* SMK 모달 */
+.smodal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(8,8,8,.78);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.smodal.open{opacity:1;visibility:visible}
+.sm-box{width:min(1180px,100%);height:min(86vh,820px);background:var(--ink-2);border:1px solid var(--line);border-radius:22px;display:flex;flex-direction:column;overflow:hidden;transform:translateY(14px) scale(.98);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.smodal.open .sm-box{transform:none}
+.sm-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line)}
+.sm-head .mono{color:var(--mint);font-size:11px}
+.sm-head h3{font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.35;margin-top:6px;word-break:keep-all;text-wrap:balance}
+.sm-head p{color:var(--paper-dim);font-size:13px;margin-top:4px;word-break:keep-all}
+.sm-x{flex-shrink:0;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--paper);font-size:18px;cursor:pointer}
+.sm-x:hover{border-color:var(--mint);color:var(--mint)}
+.sm-body{flex:1;min-height:0;background:#fff;position:relative}
+.sm-body iframe{width:100%;height:100%;border:0;display:block}
+.sm-body .img{width:100%;height:100%;overflow:auto;display:flex;align-items:flex-start;justify-content:center;background:#f4f4f2}
+.sm-body .img img{max-width:100%;height:auto;display:block}
+.sm-foot{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:10px;padding:14px 22px;border-top:1px solid var(--line)}
+.sm-foot a{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;padding:11px 18px;border-radius:999px;border:1px solid var(--line);white-space:nowrap;transition:all .2s}
+.sm-foot a:hover{border-color:var(--mint);color:var(--mint)}
+.sm-foot a.main{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.sm-foot a.main:hover{background:var(--mint);border-color:var(--mint);color:var(--ink)}
+.sm-foot a.main i{font-style:normal;transition:transform .25s}
+.sm-foot a.main:hover i{transform:translateX(4px)}
+body.sm-lock{overflow:hidden}
+@media (max-width:600px){.smodal{padding:10px}.sm-box{height:92vh;border-radius:16px}.sm-head{padding:14px 16px}.sm-head h3{font-size:16px}.sm-foot{padding:12px 16px}.sm-foot a{font-size:13px;padding:10px 14px}}
 
 /* 주소 */
 .addr{display:inline-flex;align-items:center;gap:10px;color:var(--paper-dim);font-size:13px;transition:color .2s}

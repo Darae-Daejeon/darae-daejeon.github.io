@@ -221,7 +221,7 @@
     var mix = [], seen = {}, left = D.smk.length, i = 0;
     while (left > 0 && i < 2000) { var l = per[order[i % order.length]]; if (l.length) { var x = l.shift(); left--; if (!seen[x.thumb]) { seen[x.thumb] = 1; mix.push(x); } } i++; }
     var half = Math.ceil(mix.length / 2);
-    var tile = function (x) { return '<span class="sb-card"><img src="' + ROOT + 'assets/smk/' + x.thumb + '.jpg" alt="" loading="lazy"><b>' + x.title + '</b></span>'; };
+    var tile = function (x) { return '<button type="button" class="sb-card" data-smk="' + D.smk.indexOf(x) + '" aria-label="' + x.title + ' 기술소개서 보기"><img src="' + ROOT + 'assets/smk/' + x.thumb + '.jpg" alt="" loading="lazy"><b>' + x.title + '</b></button>'; };
     $('sb-count').textContent = D.smk.length;
     if ($('nav-smk')) $('nav-smk').textContent = D.smk.length;
     $('sb-sub').textContent = order.length + '개 사업 · ' + D.orgs.filter(function (o) { return D.smk.some(function (x) { return D.byId[x.p].org.indexOf(o.id) > -1; }); }).length + '개 기관';
@@ -243,6 +243,36 @@
     void track.offsetWidth; track.classList.add('run');
   }
   function marqueeAll() { document.querySelectorAll('.mq').forEach(marquee); }
+
+  /* ---------- SMK 모달: 띠의 카드를 누르면 그 기술소개서를 바로 보여줌 ---------- */
+  var modal, lastFocus;
+  function esc(t) { return String(t || '').replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function openSmk(i) {
+    var x = D.smk[i]; if (!x) return;
+    var p = D.byId[x.p] || {}, url = D.href(x.url), isImg = /\.(jpe?g|png|webp|gif)$/i.test(x.url);
+    if (!modal) {
+      modal = document.createElement('div'); modal.className = 'smodal'; modal.setAttribute('role', 'dialog'); modal.setAttribute('aria-modal', 'true');
+      document.body.appendChild(modal);
+      modal.addEventListener('click', function (e) { if (e.target === modal || e.target.closest('.sm-x')) closeSmk(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) closeSmk(); });
+    }
+    modal.innerHTML = '<div class="sm-box"><div class="sm-head"><div><div class="mono">' + esc(x.no) + ' · ' + esc(p.short || p.title || '') + ' · ' + (p.year || '') + '</div>' +
+      '<h3>' + esc(x.title) + '</h3><p>' + esc(x.inst) + (x.who ? ' · ' + esc(x.who) : '') + (x.sub ? ' · ' + esc(x.sub) : '') + (x.note ? ' · ' + esc(x.note) : '') + '</p></div>' +
+      '<button type="button" class="sm-x" aria-label="닫기">✕</button></div>' +
+      '<div class="sm-body">' + (isImg ? '<div class="img"><img src="' + url + '" alt="' + esc(x.title) + '"></div>' : '<iframe src="' + url + '" title="' + esc(x.title) + '" loading="lazy"></iframe>') + '</div>' +
+      '<div class="sm-foot"><a href="' + url + '" target="_blank" rel="noopener">새 탭에서 크게 보기 ↗</a>' +
+      '<a class="main" href="' + ROOT + 'smk/">온라인 기술소개서 전체 보기 <i>→</i></a></div></div>';
+    modal.setAttribute('aria-label', x.title);
+    lastFocus = document.activeElement;
+    document.body.classList.add('sm-lock');
+    requestAnimationFrame(function () { modal.classList.add('open'); modal.querySelector('.sm-x').focus(); });
+  }
+  function closeSmk() {
+    modal.classList.remove('open'); document.body.classList.remove('sm-lock');
+    setTimeout(function () { if (!modal.classList.contains('open')) modal.innerHTML = ''; }, 300);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.addEventListener('click', function (e) { var b = e.target.closest('.sb-card[data-smk]'); if (b) openSmk(+b.dataset.smk); });
 
   hero(); stats(); smkBand(); render();
   marqueeAll();
