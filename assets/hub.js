@@ -4,7 +4,7 @@
   function V() { return window.HUB_VARIANT || 'drag'; }   // drag / coverflow / thumbs
   var q = new URLSearchParams(location.search);
   var TODAY = q.get('today') ? new Date(q.get('today') + 'T00:00:00+09:00') : new Date();
-  var TABS = [['all', 'ALL'], ['event', 'EVENTS'], ['news', 'NEWSLETTER'], ['survey', 'SURVEY']];
+  var TABS = [['all', 'ALL'], ['event', 'EVENTS'], ['news', 'NEWSLETTER'], ['report', 'REPORT'], ['survey', 'SURVEY']];
   var WEEK = '일월화수목금토';
   function $(id) { return document.getElementById(id); }
   function thumbSrc(n) { return ROOT + 'assets/thumbs/' + n + '.jpg'; }
@@ -67,6 +67,7 @@
   function thumbHTML(p) {
     if (p.mosaic) return '<div class="mini">' + p.mosaic.map(function (n) { return '<img src="' + thumbSrc(n) + '" alt="" loading="lazy">'; }).join('') + '</div>';
     if (p.thumb) return '<img src="' + thumbSrc(p.thumb) + '" alt="' + p.title + '" loading="lazy">';
+    if (p.drive) return '<img src="https://drive.google.com/thumbnail?id=' + p.drive + '&sz=w800" alt="' + p.title + '" loading="lazy" referrerpolicy="no-referrer">';
     return '<div class="tile-fill"><b>' + (p.issue || D.orgNames(p)) + '</b><small>' + D.types[p.type] + '</small></div>';
   }
   /* 진행 중: 날짜가 오늘 이후인 행사(행사일)·수요조사(마감일) */
@@ -176,7 +177,7 @@
       var g = groups[k].sort(function (a, b) { return (b.order || 0) - (a.order || 0); });
       if (g.length > 1) blocks.push({ k: k, g: g, y: g[0].year }); else singles.push(g[0]);
     });
-    singles.sort(function (a, b) { return b.year - a.year || ((b.date || '') > (a.date || '') ? 1 : -1); });
+    singles.sort(function (a, b) { return b.year - a.year || ((b.date || '') !== (a.date || '') ? ((b.date || '') > (a.date || '') ? 1 : -1) : ((b.order || 0) - (a.order || 0))); });
     blocks.sort(function (a, b) { return b.y - a.y; });
     var html = singles.map(function (p) { return card(p, false); }).join('') +
       blocks.map(function (b) { return seriesBlock(b.k, b.g); }).join('');

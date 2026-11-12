@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../assets/hub.css?v=20261112-9">
+<link rel="stylesheet" href="../assets/hub.css?v=20261112-10">
 <style>
 .page{padding:64px 0 80px}
 .ph{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:28px}
@@ -19,7 +19,7 @@
 .yr{display:flex;gap:6px;flex-wrap:wrap}
 .yr button{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;background:transparent;color:var(--paper-dim);border:1px solid var(--line);border-radius:999px;padding:10px 16px;cursor:pointer}
 .yr button.on{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-.kpi{display:grid;grid-template-columns:repeat(6,1fr);border-bottom:1px solid var(--line)}
+.kpi{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:1px solid var(--line)}
 .kpi div{padding:28px 20px 24px;border-right:1px solid var(--line)}
 .kpi div:last-child{border-right:0}
 .kpi b{font-family:var(--display);font-weight:400;font-size:56px;line-height:1;display:block}
@@ -77,7 +77,7 @@ td a{color:var(--mint)}
   <div class="wrap foot"><a class="addr" href="https://map.naver.com/p/search/%EB%8C%80%EC%A0%84%20%EC%9C%A0%EC%84%B1%EA%B5%AC%20%EB%8C%80%EB%8D%95%EB%8C%80%EB%A1%9C%20593" target="_blank" rel="noopener"><span class="mono">© 다래전략사업화센터 대전지사</span> 대전 유성구 대덕대로 593 (대덕TBC 908호) ↗</a><a class="mono" href="../">Home ↑</a></div>
 </footer>
 
-<script src="../data.js?v=20261112-9"></script>
+<script src="../data.js?v=20261112-10"></script>
 <script>
 (function(){
   var D=window.DARAE,T=D.types;
@@ -85,17 +85,17 @@ td a{color:var(--mint)}
   function $(id){return document.getElementById(id)}
   function z(n){return '<td class="n'+(n?'':' z')+'">'+n+'</td>'}
   function agg(list){
-    var o={event:0,news:0,survey:0,all:list.length,tech:0,smk:0};
+    var o={event:0,news:0,report:0,survey:0,all:list.length,tech:0,smk:0};
     list.forEach(function(p){o[p.type]++;o.tech+=nt(p);o.smk+=D.smkOf(p.id).length});return o}
   function nt(p){return p.type==='news'&&!D.smkOf(p.id).length?(p.techs||0):0}
-  var HEAD='<th class="n">행사</th><th class="n">뉴스레터</th><th class="n">수요조사</th><th class="n">사업 계</th><th class="n">뉴스레터 중개 기술</th><th class="n">SMK</th>';
-  function row(a){return z(a.event)+z(a.news)+z(a.survey)+z(a.all)+z(a.tech)+z(a.smk)}
+  var HEAD='<th class="n">행사</th><th class="n">뉴스레터</th><th class="n">리포트</th><th class="n">수요조사</th><th class="n">사업 계</th><th class="n">뉴스레터 중개 기술</th><th class="n">SMK</th>';
+  function row(a){return z(a.event)+z(a.news)+z(a.report)+z(a.survey)+z(a.all)+z(a.tech)+z(a.smk)}
   function render(){
     var P=D.projects.filter(function(p){return Y==='all'||p.year===+Y});
     $('ylabel').textContent=Y==='all'?(D.years.length>1?D.years[D.years.length-1]+'–'+D.years[0]:String(D.years[0])):Y;
     $('yr').innerHTML=[['all','전체']].concat(D.years.map(function(y){return [String(y),String(y)]})).map(function(x){return '<button data-y="'+x[0]+'"'+(x[0]===Y?' class="on"':'')+'>'+x[1]+'</button>'}).join('');
     var a=agg(P);
-    $('kpi').innerHTML=[['사업 계',a.all],['행사',a.event],['뉴스레터',a.news],['수요조사',a.survey],['SMK',a.smk],['뉴스레터 중개 기술',a.tech]].map(function(k){return '<div><b>'+k[1]+'</b><span>'+k[0]+'</span></div>'}).join('');
+    $('kpi').innerHTML=[['사업 계',a.all],['행사',a.event],['뉴스레터',a.news],['리포트',a.report],['수요조사',a.survey],['SMK',a.smk],['뉴스레터 중개 기술',a.tech]].map(function(k){return '<div><b>'+k[1]+'</b><span>'+k[0]+'</span></div>'}).join('');
     $('t-org').innerHTML='<thead><tr><th>기관</th>'+HEAD+'</tr></thead><tbody>'+D.orgs.map(function(o){
       var b=agg(P.filter(function(p){return p.org.indexOf(o.id)>-1}));return b.all?'<tr><td>'+o.name+' <span style="color:var(--paper-dim)">'+o.full+'</span></td>'+row(b)+'</tr>':''}).join('')+
       '<tr class="sum"><td>합계 (중복 제외)</td>'+row(a)+'</tr></tbody>';

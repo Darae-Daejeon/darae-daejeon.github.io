@@ -18,10 +18,11 @@ window.DARAE = {
     { id: 'etri',  name: 'ETRI',  full: '한국전자통신연구원' },
     { id: 'kribb', name: 'KRIBB', full: '한국생명공학연구원' },
     { id: 'dicia', name: 'DICIA', full: '대전정보문화산업진흥원' },
-    { id: 'jbnu',  name: '전북대', full: '전북대학교' }
+    { id: 'jbnu',  name: '전북대', full: '전북대학교' },
+    { id: 'innopolis', name: 'INNOPOLIS', full: '전북연구개발특구본부' }
   ],
 
-  types: { event: '행사', news: '뉴스레터', survey: '수요조사' },
+  types: { event: '행사', news: '뉴스레터', survey: '수요조사', report: '리포트' },
 
   /* 시리즈: 같은 series 값을 가진 뉴스레터가 2건 이상이면 허브에서 한 칸으로 묶임 */
   series: {
@@ -40,9 +41,17 @@ window.DARAE = {
      url    : darae-daejeon.github.io/ 뒤 주소
      short  : SMK 목록·집계에 쓰는 짧은 이름
      thumb  : assets/thumbs/ 안의 썸네일 이름 (mosaic 은 4장 묶음)
+     drive  : 구글 드라이브 파일 ID — 넣으면 첫 페이지 미리보기를 썸네일로 자동 사용 (파일 저장 불필요)
      techs  : 뉴스레터에 실린 기술 수 (ETRI 등이 만든 자료라 SMK로 세지 않음, 실적 집계에만 표시)
   */
   projects: [
+    { id: 'innopolis-issue-01', year: 2026, type: 'report', org: ['innopolis'], order: 1,
+      issue: 'Vol.01', title: '다래 이슈레포트 Vol.01 — 반도체·디스플레이', short: '이슈레포트 Vol.01',
+      url: 'https://drive.google.com/file/d/1sIAcWHVgxLl7oIC3lllSp2-UMMSIYxf2/view?usp=sharing', drive: '1sIAcWHVgxLl7oIC3lllSp2-UMMSIYxf2' },
+    { id: 'innopolis-issue-02', year: 2026, type: 'report', org: ['innopolis'], order: 2,
+      issue: 'Vol.02', title: '다래 이슈레포트 Vol.02 — 첨단바이오', short: '이슈레포트 Vol.02',
+      url: 'https://drive.google.com/file/d/1no8mxDEfB3bZIVw0v8M9ctGSm6seRYVj/view?usp=sharing', drive: '1no8mxDEfB3bZIVw0v8M9ctGSm6seRYVj' },
+
     { id: 'kist-jbnu-partnering-2026', year: 2026, type: 'event', org: ['kist', 'jbnu'],
       title: 'KIST-전북대 탄소복합·이차전지소재 공동기술상담회', kind: '공동기술상담회', short: 'KIST-전북대 상담회',
       date: '2026-12-16', time: '10:00', place: '전북테크비즈센터 2층 다목적실',
