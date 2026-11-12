@@ -5,7 +5,7 @@
    새 사업 추가 순서
    1. projects 에 한 줄 추가 (연도·기관·종류·제목·날짜·주소)
    2. 기술소개서가 있으면 smk 에 기술마다 한 줄씩 추가 (p 에 사업 id)
-   3. 뉴스레터처럼 SMK 없이 기술만 소개하면 projects 의 techs 에 건수 입력
+   3. 뉴스레터처럼 다른 기관이 만든 자료로 기술만 소개하면 projects 의 techs 에 건수 입력 (SMK 수에는 안 들어감)
    ========================================================= */
 
 window.DARAE = {
@@ -40,7 +40,7 @@ window.DARAE = {
      url    : darae-daejeon.github.io/ 뒤 주소
      short  : SMK 목록·집계에 쓰는 짧은 이름
      thumb  : assets/thumbs/ 안의 썸네일 이름 (mosaic 은 4장 묶음)
-     techs  : 소개 기술 건수 (smk 목록이 있으면 자동 계산이라 비움)
+     techs  : 뉴스레터에 실린 기술 수 (ETRI 등이 만든 자료라 SMK로 세지 않음, 실적 집계에만 표시)
   */
   projects: [
     { id: 'kist-jbnu-partnering-2026', year: 2026, type: 'event', org: ['kist', 'jbnu'],

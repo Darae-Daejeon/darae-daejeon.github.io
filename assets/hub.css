@@ -69,13 +69,19 @@ h1 .dot{color:var(--mint)}
 
 /* 기관 흐르는 띠 */
 .ticker{background:var(--paper);color:var(--ink);overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--line)}
-.track{display:inline-flex;animation:roll 38s linear infinite;padding:18px 0}
+.mq{display:flex;width:max-content;will-change:transform}
+.mq.run{animation:mq var(--dur,40s) linear infinite}
+.mq .grp{display:flex;flex-shrink:0}
+@keyframes mq{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-1 * var(--mq,50%)),0,0)}}
+.track{padding:18px 0}
 .track .ci{display:inline-flex;align-items:center;height:56px;padding:0 44px;position:relative}
-.track .ci+.ci::before{content:"";position:absolute;left:0;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:rgba(18,18,18,.25)}
+.track .ci::before{content:"";position:absolute;left:0;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:rgba(18,18,18,.25)}
 .track .ci img{display:block;height:40px;width:auto}
 .track .ci img.h-etri{height:28px}
 .track .ci img.h-kribb{height:34px}
 .track .ci img.h-inno{height:46px}
+.track .ci img.h-dicia{height:32px}
+.track .ci img.h-jbnu{height:44px}
 .track .ci.txt{font-family:var(--sans);font-size:22px;font-weight:800;letter-spacing:-.03em;color:#1f2a44}
 @keyframes roll{to{transform:translateX(-50%)}}
 
@@ -213,7 +219,8 @@ h1 .dot{color:var(--mint)}
 .sb-go i{font-style:normal;transition:transform .25s}
 .smkband:hover .sb-go i{transform:translateX(4px)}
 .sb-view{min-width:0;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.sb-track{display:flex;gap:14px;width:max-content;animation:roll 70s linear infinite;padding:28px 0}
+.sb-track{padding:28px 0}
+.sb-track .sb-card{margin-right:14px}
 .sb-card{width:200px;flex-shrink:0;display:block}
 .sb-card img{width:200px;height:150px;object-fit:cover;border-radius:12px;background:#fff;border:1px solid var(--line);display:block}
 .sb-card b{display:block;font-size:13px;font-weight:600;line-height:1.4;margin-top:9px;color:var(--paper-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -259,7 +266,7 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding:40px 0 24px;over
   .stats{grid-template-columns:1fr}
   .stat{border-right:0;border-bottom:1px solid var(--line);padding:24px 16px}
   .stat:last-child{border-bottom:0}
-  .track .ci{height:44px;padding:0 28px}.track .ci img{height:30px}.track .ci img.h-etri{height:21px}.track .ci img.h-kribb{height:26px}.track .ci img.h-inno{height:34px}.track .ci.txt{font-size:17px}
+  .track .ci{height:44px;padding:0 28px}.track .ci img{height:30px}.track .ci img.h-etri{height:21px}.track .ci img.h-kribb{height:26px}.track .ci img.h-inno{height:34px}.track .ci img.h-dicia{height:24px}.track .ci img.h-jbnu{height:33px}.track .ci.txt{font-size:17px}
   .archive{padding:64px 0 24px}
   .s-info h3{font-size:46px}
   .s-track .swiper-slide{width:158px}
@@ -269,4 +276,4 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding:40px 0 24px;over
   .cap h3{font-size:15px}
   .mosaic{height:150px}
 }
-@media (prefers-reduced-motion:reduce){.sb-track,.track{animation-duration:200s!important}*:not(.sb-track):not(.track){animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*:not(.mq){animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}

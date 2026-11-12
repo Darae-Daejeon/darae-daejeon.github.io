@@ -38,10 +38,7 @@
   function stats() {
     var ev = D.projects.filter(function (p) { return p.type === 'event'; }).length;
     var nw = D.projects.filter(function (p) { return p.type === 'news'; }).length;
-    var tc = D.projects.reduce(function (n, p) { return n + D.techsOf(p); }, 0);
-    $('n-event').dataset.n = ev; $('n-tech').dataset.n = tc; $('n-news').dataset.n = nw;
-    var sm = D.smk.length;
-    if ($('n-tech-sub')) $('n-tech-sub').innerHTML = '기술소개서(SMK) <b>' + sm + '</b> + 뉴스레터 소개 기술 <b>' + (tc - sm) + '</b>';
+    $('n-event').dataset.n = ev; $('n-tech').dataset.n = D.smk.length; $('n-news').dataset.n = nw;
     document.querySelectorAll('.num[data-n]').forEach(function (el) {
       var end = +el.dataset.n, sup = el.querySelector('sup').outerHTML, s = null;
       function step(t) { if (!s) s = t; var k = Math.min((t - s) / 1200, 1); el.innerHTML = Math.round(end * (1 - Math.pow(1 - k, 3))) + sup; if (k < 1) requestAnimationFrame(step); }
@@ -224,10 +221,28 @@
     $('sb-count').textContent = D.smk.length;
     if ($('nav-smk')) $('nav-smk').textContent = D.smk.length;
     $('sb-sub').textContent = projs + '개 사업 · ' + D.orgs.filter(function (o) { return D.smk.some(function (x) { return D.byId[x.p].org.indexOf(o.id) > -1; }); }).length + '개 기관';
-    $('sb-track').innerHTML = pick.map(tile).join('') + pick.map(tile).join('');
+    $('sb-track').innerHTML = '<div class="grp">' + pick.map(tile).join('') + '</div>';
   }
 
+  /* ---------- 끊김 없는 흐르는 띠: 한 묶음을 화면보다 길게 이어 붙이고, 정확히 한 묶음 폭만큼 이동 ---------- */
+  function marquee(track) {
+    var grp = track.querySelector('.grp'); if (!grp) return;
+    track.querySelectorAll('.grp.clone').forEach(function (c) { c.remove(); });
+    track.classList.remove('run');
+    var w = grp.getBoundingClientRect().width; if (!w) return;
+    var view = track.parentNode.getBoundingClientRect().width || window.innerWidth;
+    var n = Math.ceil(view / w) + 1;
+    for (var i = 0; i < n; i++) { var c = grp.cloneNode(true); c.classList.add('clone'); c.setAttribute('aria-hidden', 'true'); track.appendChild(c); }
+    track.style.setProperty('--mq', w + 'px');
+    track.style.setProperty('--dur', (w / (+track.dataset.speed || 50)) + 's');
+    void track.offsetWidth; track.classList.add('run');
+  }
+  function marqueeAll() { document.querySelectorAll('.mq').forEach(marquee); }
+
   hero(); stats(); smkBand(); render();
+  marqueeAll();
+  window.addEventListener('load', marqueeAll);
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(marqueeAll, 200); });
   if (q.get('type') || q.get('org') || q.get('year')) $('archive').scrollIntoView();
   window.HUB_RERENDER = render;
 })();
