@@ -1,6 +1,6 @@
 /* =========================================================
    다래 실적 대장 — 자동 생성 파일, 직접 고치지 마세요.
-   2026-11-15 · 사업 12건 · SMK 35건
+   2026-11-15 · 사업 13건 · SMK 35건
 
    새 사업은 해당 기관 저장소의 사업 폴더에 project.json 을 넣으면 자동으로 반영됩니다.
    기관·종류 설정은 data/config.json, 깃허브 폴더가 없는 사업은 data/local.json
@@ -89,6 +89,22 @@ window.DARAE = {
       "dateLabel": "~ 2026.12.10",
       "thumb": "dicia-survey",
       "url": "dicia/2026-logistics-ax-strategy/survey/"
+    },
+    {
+      "id": "dicia-ict-survey-2026",
+      "year": 2026,
+      "type": "survey",
+      "org": [
+        "dicia"
+      ],
+      "title": "대전 ICT기업 스마트물류 AX 수요조사",
+      "kind": "수요조사",
+      "short": "DICIA ICT 수요조사",
+      "parent": "지역 물류기업 스마트물류 AX 전략수립 용역",
+      "date": "2026-11-27",
+      "dateLabel": "~ 2026.11.27",
+      "url": "dicia/2026-logistics-ax-strategy/survey-ict/",
+      "thumb": "dicia/2026-logistics-ax-strategy/survey-ict/thumb.jpg"
     },
     {
       "id": "kribb-bioresource-2026",
