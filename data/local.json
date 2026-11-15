@@ -1,0 +1,30 @@
+[
+  {
+    "id": "innopolis-issue-01",
+    "year": 2026,
+    "type": "report",
+    "org": [
+      "innopolis"
+    ],
+    "order": 1,
+    "issue": "Vol.01",
+    "title": "다래 이슈레포트 Vol.01 — 반도체·디스플레이",
+    "short": "이슈레포트 Vol.01",
+    "url": "https://drive.google.com/file/d/1sIAcWHVgxLl7oIC3lllSp2-UMMSIYxf2/view?usp=sharing",
+    "drive": "1sIAcWHVgxLl7oIC3lllSp2-UMMSIYxf2"
+  },
+  {
+    "id": "innopolis-issue-02",
+    "year": 2026,
+    "type": "report",
+    "org": [
+      "innopolis"
+    ],
+    "order": 2,
+    "issue": "Vol.02",
+    "title": "다래 이슈레포트 Vol.02 — 첨단바이오",
+    "short": "이슈레포트 Vol.02",
+    "url": "https://drive.google.com/file/d/1no8mxDEfB3bZIVw0v8M9ctGSm6seRYVj/view?usp=sharing",
+    "drive": "1no8mxDEfB3bZIVw0v8M9ctGSm6seRYVj"
+  }
+]

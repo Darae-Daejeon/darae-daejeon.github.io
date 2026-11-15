@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="../assets/hub.css?v=20261112-26">
+<link rel="stylesheet" href="../assets/hub.css?v=20261115-1">
 <style>
 .page{padding:72px 0 40px}
 .page-head{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;border-bottom:1px solid var(--line);padding-bottom:36px}
@@ -129,7 +129,7 @@
   </div>
 </footer>
 
-<script src="../data.js?v=20261112-26"></script>
+<script src="../data.js?v=20261115-1"></script>
 <script>
 (function(){
   var D=window.DARAE, ROOT='../';
@@ -178,7 +178,7 @@
         setTimeout(function(){cb.textContent='표 복사'},2500)};
     }else{
       $('out').innerHTML='<div class="sgrid">'+L.map(function(s){
-        return '<a class="sc" href="'+D.href(s.url)+'" target="_blank" rel="noopener"><div class="im"><img src="'+ROOT+'assets/smk/'+s.thumb+'.jpg" alt="" loading="lazy">'+(s.field?'<span class="fd">'+esc(s.field)+'</span>':'')+'</div>'+
+        return '<a class="sc" href="'+D.href(s.url)+'" target="_blank" rel="noopener"><div class="im"><img src="'+D.img(s.thumb,'smk',ROOT)+'" alt="" loading="lazy">'+(s.field?'<span class="fd">'+esc(s.field)+'</span>':'')+'</div>'+
           '<div class="t"><div class="mono">'+esc(s.pname)+' · '+s.year+'</div><h3>'+hl(s.title)+'</h3><p>'+hl(s.inst)+(s.who?' · '+hl(s.who):'')+(s.sub?'<br>'+hl(s.sub):'')+(s.note?' <span style="color:var(--mint)">'+esc(s.note)+'</span>':'')+'</p></div></a>'}).join('')+'</div>';
     }
     var u=new URL(location.href);['year','p','field','q','view'].forEach(function(k){var d=k==='view'?'card':k==='q'?'':'all';st[k]===d?u.searchParams.delete(k):u.searchParams.set(k,st[k])});
@@ -197,6 +197,6 @@
       now=new Date(),up=ev.filter(function(p){return dt(p)>=now}),p=up[0]||ev[ev.length-1],pill=document.getElementById('pill');
   if(p){pill.href=D.href(p.url);pill.textContent=(up[0]?'NEXT EVENT':'LATEST EVENT')+' ↗'}})();
 </script>
-<script src="../assets/fit.js?v=20261112-26"></script>
+<script src="../assets/fit.js?v=20261115-1"></script>
 </body>
 </html>

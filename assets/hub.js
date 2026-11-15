@@ -7,7 +7,7 @@
   var TABS = [['all', 'ALL'], ['event', 'EVENTS'], ['news', 'NEWSLETTER'], ['report', 'REPORT'], ['survey', 'SURVEY']];
   var WEEK = '일월화수목금토';
   function $(id) { return document.getElementById(id); }
-  function thumbSrc(n) { return ROOT + 'assets/thumbs/' + n + '.jpg'; }
+  function thumbSrc(n) { return D.img(n, 'thumbs', ROOT); }
   function dateOf(p) { return p.date ? new Date(p.date + 'T' + (p.time || '23:59') + ':00+09:00') : null; }
 
   /* ---------- 다음 행사 (오늘 이후 가장 가까운 행사, 없으면 가장 최근 행사) ---------- */
@@ -222,7 +222,7 @@
     var mix = [], seen = {}, left = D.smk.length, i = 0;
     while (left > 0 && i < 2000) { var l = per[order[i % order.length]]; if (l.length) { var x = l.shift(); left--; if (!seen[x.thumb]) { seen[x.thumb] = 1; mix.push(x); } } i++; }
     var half = Math.ceil(mix.length / 2);
-    var tile = function (x) { return '<button type="button" class="sb-card" data-smk="' + D.smk.indexOf(x) + '" aria-label="' + x.title + ' 기술소개서 보기"><img src="' + ROOT + 'assets/smk/' + x.thumb + '.jpg" alt="" loading="lazy"><b>' + x.title + '</b></button>'; };
+    var tile = function (x) { return '<button type="button" class="sb-card" data-smk="' + D.smk.indexOf(x) + '" aria-label="' + x.title + ' 기술소개서 보기"><img src="' + D.img(x.thumb, 'smk', ROOT) + '" alt="" loading="lazy"><b>' + x.title + '</b></button>'; };
     $('sb-count').textContent = D.smk.length;
     if ($('nav-smk')) $('nav-smk').textContent = D.smk.length;
     if ($('sb-sub')) $('sb-sub').textContent = order.length + '개 사업 · ' + D.orgs.filter(function (o) { return D.smk.some(function (x) { return D.byId[x.p].org.indexOf(o.id) > -1; }); }).length + '개 기관';

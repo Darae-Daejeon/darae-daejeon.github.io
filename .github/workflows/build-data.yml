@@ -1,0 +1,44 @@
+# 기관 저장소의 project.json 을 모아 data.js 를 다시 만들고 올립니다.
+# 실행 시점: 기관 저장소에서 신호가 올 때 / 30분마다 / Actions 화면의 Run workflow 버튼 / 설정 파일 수정 시
+name: 행사 목록 갱신
+
+on:
+  repository_dispatch:
+    types: [project-updated]
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - 'scripts/build-data.mjs'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: data.js 만들기
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/build-data.mjs
+      - name: 바뀐 게 있으면 올리기
+        run: |
+          if git diff --quiet data.js; then echo "변경 없음"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git add data.js
+          git commit -m "행사 목록 자동 갱신"
+          git pull --rebase
+          git push

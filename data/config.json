@@ -1,0 +1,47 @@
+{
+  "base": "https://darae-daejeon.github.io/",
+  "orgs": [
+    {
+      "id": "kist",
+      "name": "KIST",
+      "full": "한국과학기술연구원"
+    },
+    {
+      "id": "etri",
+      "name": "ETRI",
+      "full": "한국전자통신연구원"
+    },
+    {
+      "id": "kribb",
+      "name": "KRIBB",
+      "full": "한국생명공학연구원"
+    },
+    {
+      "id": "dicia",
+      "name": "DICIA",
+      "full": "대전정보문화산업진흥원"
+    },
+    {
+      "id": "jbnu",
+      "name": "전북대",
+      "full": "전북대학교"
+    },
+    {
+      "id": "innopolis",
+      "name": "INNOPOLIS",
+      "full": "전북연구개발특구본부"
+    }
+  ],
+  "types": {
+    "event": "행사",
+    "news": "뉴스레터",
+    "survey": "수요조사",
+    "report": "리포트"
+  },
+  "series": {
+    "etri-tech-series-2026": {
+      "name": "ETRI TECH SERIES",
+      "desc": "ETRI 유망기술을 다래 기업 DB에 소개하는 기술이전 중개 뉴스레터"
+    }
+  }
+}
