@@ -594,4 +594,3 @@ window.DARAE = {
   /* 썸네일 주소: 이름만 있으면 허브 assets/ 폴더, 경로(/나 .포함)면 그 경로 그대로 */
   D.img = function (n, kind, root) { if (/^https?:/.test(n)) return n; return /[\/.]/.test(n) ? (root || '') + n : (root || '') + 'assets/' + kind + '/' + n + '.jpg'; };
 })(window.DARAE);
-/* test */
