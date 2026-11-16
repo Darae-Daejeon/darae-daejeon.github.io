@@ -89,6 +89,7 @@ h1.en .out{-webkit-text-stroke:2px var(--paper)}
 .track .ci img.h-inno{height:46px}
 .track .ci img.h-dicia{height:32px}
 .track .ci img.h-jbnu{height:44px}
+.track .ci img.h-cistep{height:44px}
 .track .ci.txt{font-family:var(--sans);font-size:22px;font-weight:800;letter-spacing:-.03em;color:#1f2a44}
 @keyframes roll{to{transform:translateX(-50%)}}
 
@@ -358,7 +359,7 @@ footer{border-top:1px solid var(--line);margin-top:80px;padding:40px 0 24px;over
   .stat{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 16px}
   .stat:nth-child(2n){border-right:0}
   .stat:nth-last-child(-n+2){border-bottom:0}
-  .track .ci{height:44px;padding:0 28px}.track .ci img{height:30px}.track .ci img.h-etri{height:21px}.track .ci img.h-kribb{height:26px}.track .ci img.h-inno{height:34px}.track .ci img.h-dicia{height:24px}.track .ci img.h-jbnu{height:33px}.track .ci.txt{font-size:17px}
+  .track .ci{height:44px;padding:0 28px}.track .ci img{height:30px}.track .ci img.h-etri{height:21px}.track .ci img.h-kribb{height:26px}.track .ci img.h-inno{height:34px}.track .ci img.h-dicia{height:24px}.track .ci img.h-jbnu{height:33px}.track .ci img.h-cistep{height:33px}.track .ci.txt{font-size:17px}
   .archive{padding:64px 0 24px}
   .s-info h3{font-size:46px}
   .s-track .swiper-slide{width:158px}
