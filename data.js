@@ -1,6 +1,6 @@
 /* =========================================================
    다래 실적 대장 — 자동 생성 파일, 직접 고치지 마세요.
-   2026-11-15 · 사업 13건 · SMK 35건
+   2026-11-19 · 사업 13건 · SMK 35건
 
    새 사업은 해당 기관 저장소의 사업 폴더에 project.json 을 넣으면 자동으로 반영됩니다.
    기관·종류 설정은 data/config.json, 깃허브 폴더가 없는 사업은 data/local.json
@@ -399,7 +399,7 @@ window.DARAE = {
     {
       "p": "kist-jbnu-partnering-2026",
       "no": "T04",
-      "field": "탄소복합소재",
+      "field": "이차전지",
       "inst": "KIST 전북분원",
       "title": "폐아라미드로 만든 고방열 복합체",
       "url": "kist/2026-jbnu-partnering/assets/docs/T04_SMK.jpg",
@@ -408,7 +408,7 @@ window.DARAE = {
     {
       "p": "kist-jbnu-partnering-2026",
       "no": "T05",
-      "field": "탄소복합소재",
+      "field": "이차전지",
       "inst": "KIST 전북분원",
       "title": "BNNT 불순물 잡는 초간단 정제법",
       "url": "kist/2026-jbnu-partnering/assets/docs/T05_SMK.jpg",
@@ -435,7 +435,7 @@ window.DARAE = {
     {
       "p": "kist-jbnu-partnering-2026",
       "no": "T08",
-      "field": "탄소복합소재",
+      "field": "이차전지",
       "inst": "전북대학교",
       "title": "제철소 부생가스로 바로 발전하는 SOFC",
       "url": "kist/2026-jbnu-partnering/assets/docs/T08_SMK.jpg",
@@ -462,7 +462,7 @@ window.DARAE = {
     {
       "p": "kist-jbnu-partnering-2026",
       "no": "T11",
-      "field": "탄소복합소재",
+      "field": "이차전지",
       "inst": "전북대학교",
       "title": "메탄에서 수소 뽑고 담는 Mg 합금",
       "url": "kist/2026-jbnu-partnering/assets/docs/T11_SMK.jpg",
@@ -489,7 +489,7 @@ window.DARAE = {
     {
       "p": "kist-jbnu-partnering-2026",
       "no": "T14",
-      "field": "이차전지",
+      "field": "탄소복합소재",
       "inst": "전북대학교",
       "title": "분산제 없이 방사선으로 푸는 CNT",
       "url": "kist/2026-jbnu-partnering/assets/docs/T14_SMK.jpg",
@@ -507,7 +507,7 @@ window.DARAE = {
     {
       "p": "kist-jbnu-partnering-2026",
       "no": "T16",
-      "field": "이차전지",
+      "field": "탄소복합소재",
       "inst": "KIST 전북분원",
       "title": "10만 번 충전에도 끄떡없는 섬유 전극",
       "url": "kist/2026-jbnu-partnering/assets/docs/T16_SMK.jpg",
